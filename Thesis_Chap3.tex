@@ -201,6 +201,170 @@ $f_{\varphi}$
  نشان می‌دهیم.
  
  \section{یادگیرنده نمونه محدود در سطح ریزدانه}
+ 
+ برای دسته‌بندی در سطح دسته‌های پایه از متایادگیری مبتنی بر متر
+ \ref{sec:protonet}
+  و به طور خاص شبکه‌ی پروتوتیپیکال
+ \cite{protonet}
+ استفاده کرده‌ایم. اما در این شبکه، اطلاعات تخمین دسته‌بند درشت‌دانه را ترکیب می‌کنیم. استفاده از اطلاعات حاصل از دسته‌بند درشت دانه توسط دو رویکرد اعمال شده است.
+ \begin{enumerate}
+ 	\item 
+ 	شبکه‌ی MLP ریز‌دانه یعنی 
+ 	$f_{\vartheta}$
+ 	بر روی پیش‌بینی نهایی شبکه‌ی دسته‌بند درشت‌دانه یعنی 
+ 	$f_{\varphi}$
+ 	مشروط می‌شود. با توجه به این اطلاعات اضافه، یادگیری نمونه محدود در سطح ریزدانه به صورت یک یادگیری 
+ 	\trans{چند وظیفه‌ای}{Multi Task}
+ 	انجام می‌شود. در واقع پیش‌بینی 
+ 	 	$f_{\vartheta}$
+ 	 	که تعیین می‌کند یک نمونه متعلق به چه ابردسته‌ای است، به عنوان 
+ 	 	\trans{شناسه‌ی وظیفه}{Task Identifier}
+ 	 	عمل می‌کند و به شبکه‌ی ریزدانه می‌فهماند باید روی کدام حوزه‌ی درشت‌دانه تمرکز کند. یعنی از یک رویکرد 
+ 	 	\trans{ترکیب خبره‌ها }{Mixture of Experts}
+ 	 	در یادگیری چند وظیفه‌ای استفاده می‌کنیم و هر ابردسته را یک وظیفه‌ی خاص در نظر می‌گیریم که برای حل آن از یک خبره استفاده می‌کنیم. برای رسیدن به این هدف، از یک شبکه‌ی مشترک 
+ 	 	$f_{\vartheta}$
+ 	 	استفاده می‌کنیم که بتواند اطلاعات متداول بین خبره‌ها را یاد بگیرد و علاوه بر آن، با مشروط شدن روی یک مشخصه‌ی وظیفه که از سطح درشت‌دانه می‌آید، به دسته‌بندی نمونه محدود در سطح یک ابردسته خاص بپردازد. 
+ 	 	\item
+ 	 	برای کاهش 
+ 	 	\trans{خطر}{Risk}
+ 	 	دسته‌بندی اشتباه در تنظیمات بزرگ مقیاس که تعداد زیادی دسته‌ی هدف داریم، برای هر داده‌ی پرسش در ابتدا محتمل‌ترین ابردسته‌اش را مشخص می‌کنیم و به این وسیله دسته‌های پایه ای که می‌توانیم تخمین بزنیم را محدود می‌کنیم. به همین منظور، ابتدا دسته‌بندی درشت‌دانه برای یک داده‌ی پرسش انجام می‌شود و 
+ 	 	$w$
+ 	 	ابردسته‌ی برنده مشخص می‌شوند. در نتیجه‌ی آن، می‌توان دسته‌های پایه که متعلق به این 
+ 	 	$w$
+ 	 	ابردسته نیستند را تحت یک 
+ 	 	\trans{راهبرد}{Strategy}
+ 	 	\trans{یکی از همه برنده}{Winnet Takes All}
+ 	 	، کنار گذاشت.
+ \end{enumerate}
+
+به طور ساده شده، ما به دنبال 
+$P(y_{base}=c|q)$
+هستیم. اما با توجه به بدیع بودن دسته‌های مقصد، از یک رویکرد مولد برای رسیدن به این احتمال استفاده می‌کنیم. به همین جهت و با به کار گرفتن قانون بیز و استقالات شرطی، به رابطه‌ی زیر می‌رسیم.
+\begin{equation}
+	\label{eq:theta:predictive}
+	P(y_{base}=c|q,\{\mathcal{S}\},f_\vartheta,g_\theta,f_{\varphi'},g_{\phi'}) \propto \sum_{\hat{y}_{super}=1}^{|\mathcal{Y}_{super}|}P(q|\mathcal{S}^c,f_\vartheta,g_\theta,\hat{y}_{super}^i)P(\hat{y}_{super}^i|q,f_{\varphi'},g_{\phi'}).
+\end{equation}
+
+مراحل دقیق و روابطی که از آن‌ها معادله‌ی 
+\ref{eq:theta:predictive}
+بدست‌ می‌آید را گام به گام طی می‌کنیم. 
+
+\begin{equation}
+	\begin{split} \label{eq:theta:derive}
+		P&(y_{base}=c|q,\{\mathcal{S}\},f_\vartheta,g_\theta,f_{\varphi'},g_{\phi'}) =\\
+		& \sum_{\hat{y}_{super}\in\mathcal{Y}_{super}}
+		P(y_{base}=c,\hat{y}_{super}|q,\{\mathcal{S}\},f_\vartheta,g_\theta,f_{\varphi'},g_{\phi'}) =\\
+		& \sum_{\hat{y}_{super}\in\mathcal{Y}_{super}}
+		P(y_{base}=c|q,\{\mathcal{S}\},f_\vartheta,g_\theta,f_{\varphi'},g_{\phi'},\hat{y}_{super})
+		P(\hat{y}_{super}|q,\{\mathcal{S}\},f_\vartheta,g_\theta,f_{\varphi'},g_{\phi'}) \propto\\
+		& \sum_{\hat{y}_{super}\in\mathcal{Y}_{super}}
+		P(y_{base}=c|q,\{\mathcal{S}\},f_\vartheta,g_\theta,\hat{y}_{super})
+		P(\hat{y}_{super}|q,f_{\varphi'},g_{\phi'}) \propto \\
+		& \sum_{\hat{y}_{super}\in\mathcal{Y}_{super}}
+		P(q|\mathcal{S}^c,f_\vartheta,g_\theta,\hat{y}_{super})
+		P(\hat{y}_{super}|q,f_{\varphi'},g_{\phi'}).
+	\end{split}
+\end{equation}
+
+در معادله‌ی 
+\ref{eq:theta:derive}
+ابتدا در خط اول احتمال شرطی که با داشتن یک داده‌ی پرسش 
+$q$
+به دنبال آن هستیم را آورده‌ایم و در خط دوم، یک احتمال توأمان با وارد کردن متغیر تصادفی 
+$\hat{y}_{super}$
+نوشته‌ایم و برای حذف اثر آن، روی تمامی حالات این متغیر تصادفی جمع زده‌ایم و به اصطلاح 
+\lr{marginalize out}
+کرده‌ایم. در خط سوم با استفاده از 
+\trans{قاعده‌ی زنجیره‌ای}{Chain Rule}
+ احتمالی که از قانون بیز به‌دست می‌آید، متغیر تصادفی 
+$\hat{y}_{super}$
+را به قسمت شرطی برده‌ایم. سپس از استقلال‌های شرطی موجود استفاده کرده‌ایم و به خط چهارم این معادله رسیده‌ایم. به عنوان مثال، با داشتن 
+$\hat{y}_{super}$
+یک 
+\trans{زنجیره‌ی علی}{Causal Chain}
+طبق گراف احتمالاتی این مسئله داریم و طبق قواعد 
+\lr{D-Seperation}
+از شبکه‌های قسمت 
+$\phi'$
+مستقل می‌شویم. برای رسیدن به خط آخر فرض کرده‌ایم احتمالات دسته‌های پایه یعنی 
+$P(y_{base}=c)$
+به صورت
+\trans{یکنواخت}{Uniform}
+ است و به همین جهت می‌شود از آن صرف نظر کرد. این موضوع را به طور دقیق‌تر در معادله‌ی زیر نشان داده‌ایم.
+ 
+ \begin{equation}
+ 	\begin{split}
+ 		P(y_{base}=c|q,\{\mathcal{S}\},f_\vartheta,g_\theta,f_{\varphi'},g_{\phi'}) &\propto
+ 		P(q|y_{base}=c,\{\mathcal{S}\},f_\vartheta,g_\theta,f_{\varphi'},g_{\phi'})P(y_{base}=c) \\
+ 		&\propto P(q|\mathcal{S}^c,f_\vartheta,g_\theta,f_{\varphi'},g_{\phi'}).
+ 	\end{split}
+ \end{equation}
+
+در نتیجه به رابطه‌ی بدست آمده در معادله‌ی 
+\ref{eq:theta:predictive}
+می‌رسیم.
+
+در طول آزمایش‌ها مشاهده کردیم که توزیع احتمالاتی 
+$P(\hat{y}_{super}|q,f_{\varphi'},g_{\phi'})$
+برای یک ابردسته به صورت شدیدی بر ابردسته‌های دیگر غلبه می‌کند. بنابراین برای رسیدن به پیچیدگی محاسباتی کمتر، در معادله‌ی 
+\ref{eq:theta:predictive}
+احتمال شرطی برای ابردسته‌های مغلوب را برابر صفر در نظر گرفته‌ایم. به همین دلیل، رابطه‌ی 
+\ref{eq:theta:predictive}
+را با احتمال ابردسته‌ی برنده یا 
+$w$
+ابردسته‌ی برنده تقریب می‌زنیم و سیگما را برای کل 
+$\hat{y}_super$
+ها محاسبه نمی‌کنیم. با این تقریب به رابطه‌ی زیر می‌رسیم که احتمال مولد یک نمونه‌‌ی پرسش با داشتن اطلاعات ابردسته‌ی برنده است.
+\begin{equation}
+	P(q|\mathcal{S}^c,f_\vartheta,g_\theta,f_\varphi,g_\phi,\hat{y}_{super,winner})
+\end{equation}
+
+فرض می‌کنیم هر دسته‌ی پایه یک توزیع احتمال گاوسی کروی دارد و به این ترتیب درست‌نمایی وقوع یک پرسش به ازای یک دسته‌ی پایه را مدل می‌کنیم. با داشتن 
+$\mathcal{S}^c$
+که نمونه‌های پشتیبان یک دسته در یک ایپزود هست، نماینده‌ی هر دسته را طبق مدل پروتوتیپیکال به صورت زیر محاسبه می‌کنیم. 
+\begin{equation}
+	\mathcal{P}_{\mathcal{S}^j} = \frac{1}{|\mathcal{S}^j|}\sum\limits_{x^i \in \mathcal{S}^j}f_\vartheta\left(g_\theta(x^i), f_{\varphi'}(g_{\phi'}(x^i))\right)
+\end{equation}
+
+در نهایت پیش‌بینی دسته‌ی پایه با در نظر گرفتن مدل‌سازی گاوسی و اعمال نرمال‌سازی سافت‌مکس به صورت زیر محاسبه می‌شود.
+
+\begin{equation}
+	\begin{split} \label{eq:theta:softmax}
+		P&(y_{base}=c|q,\{\mathcal{S}\},f_\vartheta,g_\theta,f_\varphi,g_\phi) \propto\\
+		& \frac{P(q|\mathcal{S}^c,f_\vartheta,g_\theta,f_\varphi,g_\phi,\hat{y}_{super,winner})}{\sum\limits_{j\in\mathcal{Y}_{base}} P(q|\mathcal{S}^j,f_\vartheta,g_\theta,f_\varphi,g_\phi,\hat{y}_{super,winner})} =\\
+		&
+		\frac{\exp\left(-\|f_\vartheta\left(g_\theta(q), f_\varphi(g_\phi(q))\right) - \mathcal{P}_{\mathcal{S}^c}\|^2\right)}{\sum\limits_{j\in\mathcal{Y}_{base}} \exp\left(-\|f_\vartheta\left(g_\theta(q), f_\varphi(g_\phi(q))\right) - \mathcal{P}_{\mathcal{S}^j}\|^2\right)}.
+	\end{split}
+\end{equation}
+
+با محاسبه‌ی احتمال بدست‌آمده در رابطه‌ی 
+\ref{eq:theta:softmax}
+برای همه‌ی دسته‌های پایه، پیش‌بینی نهایی برابر است با
+\begin{equation}
+	\underset{y_{base}}{\operatorname*{argmax}} ~
+	P(y_{base}|q,\{\mathcal{S}\},f_\vartheta,g_\theta,f_\varphi,g_\phi)
+\end{equation}
+
+در فاز متاآموزش و برای آموزش شبکه هم با اعمال بهینه‌سازی براساس تابع خطای بی‌نظمی متقابل روی احتمالات بدست آمده از 
+\ref{eq:theta:softmax}
+، پارامتر‌های شبکه‌ی 
+$f_{\vartheta}$
+به روز رسانی می‌شوند.
+
+در ادامه به جمع‌بندی روش ارائه شده و بیان شبه‌کدهای مراحل آموزش سطوح درشت‌دانه و ریزدانه پرداخته‌ایم. جهت شهود بهتر، روش پیشنهادی در شکل
+\ref{fig:method}
+آمده‌است. 
+
+  \begin{figure}[!htbp]
+	\begin{center}
+		\includegraphics[width=1\textwidth]{images/method.pdf}
+		%		\vspace{0.5in}
+		\caption{
+			تنظیمات مسئله پیش‌رو؛ در سطح درشت‌دانه، ابردسته‌ها بین مجموعه‌ی دادگان مبدا و مقصد مشترک هستند چرا که دسته‌های درشت‌دانه دچار اضافه یا کم شدن نمی‌شوند. اما در سطح ریز‌دانه، دسته‌ها و نمونه‌‌های موجود در هر دسته، بین دادگان مبدا و مقصد ناسازگار و بدون هیچ اشتراکی طراحی شده‌اند.
+		}	
+		\label{fig:method}
+	\end{center}
+\end{figure}  
 
 \section{جمع‌بندی روش و ارائه‌ی الگوریتم}
 
