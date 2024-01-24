@@ -345,11 +345,18 @@ $\mathcal{S}^c$
 	P(y_{base}|q,\{\mathcal{S}\},f_\vartheta,g_\theta,f_\varphi,g_\phi)
 \end{equation}
 
-در فاز متاآموزش و برای آموزش شبکه هم با اعمال بهینه‌سازی براساس تابع خطای بی‌نظمی متقابل روی احتمالات بدست آمده از 
+در فاز متاآموزش و برای آموزش شبکه با اعمال بهینه‌سازی براساس تابع
+\trans{خطای بی‌نظمی متقابل}{Cross Entropy Loss}
+ روی احتمالات بدست آمده از 
 \ref{eq:theta:softmax}
 ، پارامتر‌های شبکه‌ی 
 $f_{\vartheta}$
-به روز رسانی می‌شوند.
+به روز رسانی می‌شوند. نکته‌ی قابل توجه در معماری 
+$f_{\vartheta}$
+این است که مشابه معماری قسمت قابل آموزش در سطح درشت‌دانه، یک دو لایه تبدیل خطی و یک
+\trans{تابع فعال‌ساز}{Activation Function}
+ GELU 
+ در بین آن‌ها استفاده کرده‌ایم. این انتخاب مشابه قسمت درشت‌دانه، به دلیل داشتن پیچیدگی محاسباتی پایین و سرعت بالا در آموزش سطح ریز‌دانه بوده است. از طرفی، به دلیل نمونه محدود بودن مسئله، با اضافه شدن پارامتر‌های شبکه و افزایش قدرت و پیچیدگی آن، دچار بیش برازش روی مجموعه داده‌های آموزش می‌شویم. این موضوع به دلیل بزرگ مقیاس بودن مسئله که سبب تغییرات بسیار جزیی بین دسته‌های ریزدانه می‌شود، نمود بیشتری دارد. 
 
 در ادامه به جمع‌بندی روش ارائه شده و بیان شبه‌کدهای مراحل آموزش سطوح درشت‌دانه و ریزدانه پرداخته‌ایم. جهت شهود بهتر، روش پیشنهادی در شکل
 \ref{fig:method}
@@ -360,12 +367,80 @@ $f_{\vartheta}$
 		\includegraphics[width=1\textwidth]{images/method.pdf}
 		%		\vspace{0.5in}
 		\caption{
-			تنظیمات مسئله پیش‌رو؛ در سطح درشت‌دانه، ابردسته‌ها بین مجموعه‌ی دادگان مبدا و مقصد مشترک هستند چرا که دسته‌های درشت‌دانه دچار اضافه یا کم شدن نمی‌شوند. اما در سطح ریز‌دانه، دسته‌ها و نمونه‌‌های موجود در هر دسته، بین دادگان مبدا و مقصد ناسازگار و بدون هیچ اشتراکی طراحی شده‌اند.
+			نمای کلی روش پیشنهادی؛ در قسمت بالا، دسته‌بند یک پرسش q ورودی گرفته شده‌است. دسته‌بندهای درشت‌دانه‌ی 
+			$g_{\phi}$
+			و 
+			$f_{\varphi}$
+			که با رنگ‌آبی مشخص شده‌اند، محدوده‌ی دسته‌های پایه را محدود می‌کنند تا با یک رویکرد بالا به پایین،‌ دقت دسته‌بند‌های ریز دانه‌ی 
+			$g_{\theta}$
+			و 
+			$f_{\vartheta}$
+			را با محدود‌کردن دسته‌های ممکن، بالا ببرند. در شکل پایین سمت چپ، به ازای داده‌های پشتیبان یک دسته، شبه‌برچسب مشابه روندی که در تنظیم ترکیبی داشتیم، به‌دست می‌آید و با مشروط کردن شبکه‌ی ریزدانه روی شبه‌برچسب، نماینده‌ی یک دسته ساخته می‌شود. در شکل پایین سمت راست، نماینده دسته‌های فعال که مربوط به $w$ ابردسته‌ی برنده هستند با رنگ قرمز نشان داده شده‌اند و باقی نماینده دسته‌های موجود در کانتور ابردسته‌ها غیرفعال اند.
 		}	
 		\label{fig:method}
 	\end{center}
 \end{figure}  
 
-\section{جمع‌بندی روش و ارائه‌ی الگوریتم}
+\section{جمع‌بندی روش و ارائه‌ی شبه‌کد}
 
+در این فصل به ارائه‌ی روش پیشنهادی برای حل مسئله‌ی دسته‌بندی بزرگ مقیاس نمونه محدود پرداختیم. هدف این روش پوشش تمامی چالش‌های موجود در این مسئله اعم از مجموعه باز بودن، توجه به تغییر توزیع زیرجمعیت، داده کارآمدی و استفاده از سلسله‌مراتب ذاتی داده‌ها بوده است. برای این منظور، یک تنظیمات جدید مطابق شکل 
+\ref{fig:problem}
+پیشنهاد داده‌ایم که دسته‌های ریزدانه در مبدا و مقصد هیچ اشتراکی در سطح داده و دسته نداشته باشند تا چالشی‌ترین حالت مسئله را حل کنیم. برای ترکیب اطلاعات سطوح درشت‌دانه و ریزدانه از یک رویکرد بیزی استفاده کردیم. نیاز به داشتن برچسب درشت‌دانه برای داده‌های پشتیبان مجموعه‌ی مقصد را با یک رویکرد نیمه‌نظارتی از بین بردیم. با توجه به مشاهدات و آزمایش‌ها، از تکنیک‌هایی برای رسیدن به پیچیدگی محاسباتی و زمان پایین‌تر آموزش بهره بردیم. از یک رویکرد مولد برای دسته‌بندی نهایی با توجه به بدیع بودن تمامی دسته‌ها در فاز متاآزمون استفاده کردیم. در نهایت روش ارائه شده به نحوی است که علاوه بر فاز متاآزمون، در متاآموزش هم برخلاف روش‌های دیگر نیازی به مجموعه دادگان با نمونه‌های زیاد ندارد. 
+
+در ادامه، برای مشخص شدن بهتر جزییات آموزش دسته‌بندهای سطح درشت‌دانه و ریزدانه، شبه‌کد آن‌ها را آورده‌ایم.
+
+\begin{latin}
+	\begin{algorithm}
+			\caption{Coarse-grained classifier (training)}\label{alg:coarse:train}
+			\begin{algorithmic}[1]
+					 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
+					\renewcommand{\algorithmicensure}{\textbf{Output:}}
+					\renewcommand{\algorithmiccomment}[1]{\hfill \textit{//#1}}
+					\REQUIRE dataset $\mathcal{D}_{source}$ and $\mathcal{D}_{target}$, backbone $g_\phi$, classification head $f_\varphi$
+					
+					\ENSURE backbone $g_{\phi'}$, classification head $f_{\varphi'}$
+					
+					\WHILE[Supervised learning]{not converged}
+					\STATE sample batch $\{(x^i, y_{super}^i)\}_{i=1}^B\sim\mathcal{D}_{source}$ 
+					\STATE $\hat{y}_{super}^i \leftarrow f_\varphi(g_\phi(x^i))$
+					\hfill \textit{//Do this for all of the batch samples}
+					\STATE update $\phi$ and $\varphi$ based on $\frac{1}{B}\sum\limits_{i=1}^B\mathcal{L}(y^i_{super}, \hat{y}^i_{super})$
+					\ENDWHILE
+					
+					\STATE initialize $\phi' \leftarrow \phi, \varphi' \leftarrow \varphi$
+					
+					\FOR[Semi-supervised learning]{$c \in \mathcal{Y}_{base, target}$}
+					\STATE take all support samples $\mathcal{S}^c$
+					\STATE $\Tilde{y}_{super} \leftarrow \operatorname*{argmax} \prod\limits_{x^i \in \mathcal{S}^c} f_{\varphi'}(g_{\phi'}(x^i))$
+					\STATE $\hat{y}_{super}^i \leftarrow f_{\varphi'}\left(g_{\phi'}\left(x^i\right)\right)$
+					\hfill\textit{//Do this for all of the support samples}
+					\STATE update $\phi'$ and $\varphi'$ based on $\frac{1}{|\mathcal{S}^c|}\sum\limits_{i=1}^{|\mathcal{S}^c|}\mathcal{L}(\Tilde{y}_{super}, \hat{y}^i_{super})$
+					\ENDFOR
+				\end{algorithmic}
+		\end{algorithm}
+\end{latin}
+
+
+\begin{latin}
+	\begin{algorithm}
+		\caption{fine-grained classifier (training)}\label{alg:fine:train}
+		\begin{algorithmic}[1]
+			\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+			\renewcommand{\algorithmicensure}{\textbf{Output:}}
+			\renewcommand{\algorithmiccomment}[1]{\hfill \textit{//#1}}
+			\REQUIRE dataset $\mathcal{D}_{source}$ and $\mathcal{D}_{target}$, backbone $g_\theta$, classification head $f_\vartheta$
+			
+			\ENSURE backbone $g_{\theta'}$, classification head $f_{\vartheta'}$
+			
+			\WHILE[Conditional prototypical learning]{not converged}
+			\STATE sample $\{\mathcal{S}^j, \mathcal{Q}^j\}_j \sim \mathcal{D}_{source}$ and create a $K$-way $N$-shot task $\mathcal{T}$
+			\STATE calculate class conditional probabilities based on Eq.
+			\ref{eq:theta:predictive}
+			\STATE calculate class probabilities based on Eq. \ref{eq:theta:softmax}
+			\STATE update $\theta'$ and $\vartheta'$ based on cross-entropy loss
+			\ENDWHILE
+
+		\end{algorithmic}
+	\end{algorithm}
+\end{latin}
 
