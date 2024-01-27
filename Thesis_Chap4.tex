@@ -222,7 +222,7 @@ $|\mathcal{Y}_{base,target}|$
 \section{
 	\trans{روش‌های پایه}{Baselines}
 	و نحو‌ه‌ی مقایسه
-}
+} \label{sec:baselines}
 
 برای بررسی کارایی و تاثیر دو مورد بیان شده در ابتدای بخش
 \ref{sec:thetalearner}
@@ -259,56 +259,87 @@ $g_\theta$
 
 \section{نتایج}
 
-سلام
-%\begin{table}[!htbp]
-%	\caption{hello}
-%	\label{table:thetaAnimalia}
-%	\resizebox{\textwidth}{!}{%
-%		\begin{tabular}{c|ccccccc}
-%			\hline
-%			& \multicolumn{7}{c}{Animalia iNat}                                                                                                                                                                                                                                                                                                                \\ \cline{2-8} 
-%			&                                                                             & \multicolumn{4}{c}{W ابردسته برنده}                                                                  &                                                                           &                                                                                \\ \cline{3-6}
-%			\multirow{-3}{*}{\diagbox[dir=NE,trim=rl,height=2.5\line]{مجموعه دادگان}{~~~~~~~~بدنه}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پایه\\ (تخت)\end{tabular}} & 1                       & 2                       & 5                       & 10                      & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}بهره\\ نسبی\end{tabular}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پیشگویی \\ ابردسته\end{tabular}} \\ \hline
-%			Large DINO         &                                                                             & \textit{$50.95$}          & \textit{$52.83$}          & \textit{$53.55$}          & \textit{\pmb{$53.56$}} & {\color[HTML]{009901} }                                                   & $57.31$                                                                          \\
-%			Cond. Large DINO   & \multirow{-2}{*}{$53.52$}                                                     & \textit{$54.83$}          & \textit{$56.33$}          & \textit{\pmb{$56.87$}} & \textit{$56.8$}           & \multirow{-2}{*}{{\color[HTML]{009901} $+6.3$}}                             & $60.12$                                                                          \\ \cline{1-1}
-%			Giant DINO         &                                                                             & \textit{$58.64$}          & \textit{$60.77$}          & \textit{$61.55$}          & \textit{\pmb{$61.65$}} & {\color[HTML]{009901} }                                                   & $64.4$                                                                           \\
-%			Cond. Giant DINO   & \multirow{-2}{*}{$61.68$}                                                     & \textit{$60.07$}          & \textit{$62.19$}          & \textit{$62.89$}          & \textit{\pmb{$62.92$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+2$}}                               & $65.48$                                                                          \\ \cline{1-1}
-%			CLIP               &                                                                             & \textit{\pmb{$39.12$}} & \textit{$38.9$}           & \textit{$37.36$}          & \textit{$36.29$}          & {\color[HTML]{009901} }                                                   & $44.96$                                                                          \\
-%			Cond. CLIP         & \multirow{-2}{*}{$33.88$}                                                     & \textit{$39.48$}          & \textit{$39.53$}          & \textit{$39.57$}          & \textit{\pmb{$39.61$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+16.9$}}                            & $43.48$                                                                          \\ \cline{1-1}
-%			$V3$ Mobilenet       &                                                                             & \textit{$43.7$}           & \textit{\pmb{$44.39$}} & \textit{$43.77$}          & \textit{$43.15$}          & {\color[HTML]{009901} }                                                   & $50.2$                                                                           \\
-%			Cond. $V3$ Mobilenet & \multirow{-2}{*}{$41.33$}                                                     & \textit{$43.6$}           & \textit{$44.39$}          & \textit{$44.8$}           & \textit{\pmb{$44.95$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+8.8$}}                             & $47.88$                                                                          \\ \cline{1-1}
-%			$V2$ ConvNext        &                                                                             & \textit{$46.16$}          & \textit{$47.49$}          & \textit{\pmb{$47.69$}} & \textit{$47.57$}          & {\color[HTML]{009901} }                                                   & $52.83$                                                                          \\
-%			Cond. $V2$ ConvNext  & \multirow{-2}{*}{$46.09$}                                                     & \textit{$45.85$}          & \textit{$47.75$}          & \textit{$48.81$}          & \textit{\pmb{$49.19$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+6.7$}}                             & $51.68$                                                                          \\ \hline
-%		\end{tabular}%
-%	}
-%\end{table}
-%
-%
-%\begin{table}[!htbp]
-%	\caption{hello2}
-%	\label{table:thetaPlantae}
-%	\resizebox{\textwidth}{!}{%
-%		\begin{tabular}{c|ccccccc}
-%			\hline
-%			& \multicolumn{7}{c}{Plantae iNat}                                                                                                                                                                                                                                                                                                                \\ \cline{2-8} 
-%			&                                                                             & \multicolumn{4}{c}{W ابردسته برنده}                                                                 &                                                                           &                                                                                \\ \cline{3-6}
-%			\multirow{-3}{*}{\diagbox[dir=NE,trim=rl,height=2.5\line]{مجموعه دادگان}{~~~~~~~~بدنه}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پایه\\ (تخت)\end{tabular}} & 1                       & 2                      & 5                       & 10                      & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}بهره\\ نسبی\end{tabular}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پیشگویی \\ ابردسته\end{tabular}} \\ \hline
-%			Large DINO              &                                                                             & \textit{$68.48$}          & \textit{$71.44$}         & \textit{$72.68$}          & \textit{\pmb{$72.94$}} & {\color[HTML]{009901} }                                                   & $77.91$                                                                          \\
-%			Cond. Large DINO        & \multirow{-2}{*}{$72.87$}                                                     & \textit{$68.57$}          & \textit{$71.71$}         & \textit{\pmb{$73.02$}} & \textit{$73.02$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+0.2$}}                             & $77.99$                                                                          \\ \cline{1-1}
-%			Giant DINO              &                                                                             & \textit{$69.66$}          & \textit{$72.86$}         & \textit{$74.49$}          & \textit{\pmb{$74.74$}} & {\color[HTML]{009901} }                                                   & $79.11$                                                                          \\
-%			Cond. Giant DINO        & \multirow{-2}{*}{$74.77$}                                                     & \textit{$69.96$}          & \textit{$73.23$}         & \textit{$74.58$}          & \textit{\pmb{$74.96$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+0.3$}}                             & $79.54$                                                                          \\ \cline{1-1}
-%			CLIP                    &                                                                             & \textit{\pmb{$51.54$}} & \textit{$49.63$}         & \textit{$45.75$}          & \textit{$43.19$}          & {\color[HTML]{009901} }                                                   & $58.9$                                                                           \\
-%			Cond. CLIP              & \multirow{-2}{*}{$38.48$}                                                     & \textit{$50.26$}          & \textit{$50.4$}          & \textit{\pmb{$50.45$}} & \textit{$50.45$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+31.1$}}                            & 52                                                                             \\ \cline{1-1}
-%			$V3$ Mobilenet            &                                                                             & \textit{\pmb{$49.88$}} & \textit{$47.94$}         & \textit{$44.37$}          & \textit{$41.4$}           & {\color[HTML]{009901} }                                                   & $57.72$                                                                          \\
-%			Cond. $V3$ Mobilenet      & \multirow{-2}{*}{$37.15$}                                                     & \textit{$48.22$}          & \textit{$48.46$}         & \textit{\pmb{$48.49$}} & \textit{$48.47$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+30.5$}}                            & $50.41$                                                                          \\ \cline{1-1}
-%			$V2$ ConvNext             &                                                                             & \textit{$61.94$}          & \textit{\pmb{$63.2$}} & \textit{$62.6$}           & \textit{$62.18$}          & {\color[HTML]{009901} }                                                   & $70.16$                                                                          \\
-%			Cond. $V2$ ConvNext       & \multirow{-2}{*}{$61.02$}                                                     & \textit{$61.04$}          & \textit{$62.42$}         & \textit{\pmb{$62.47$}} & \textit{$62.47$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+2.4$}}                             & $68.08$                                                                          \\ \hline
-%		\end{tabular}%
-%	}
-%\end{table}
-%
+ارزیابی عملکرد روش پیشنهادی روی مجموعه دادگان معرفی شده به ازای بدنه‌های مختلف در این بخش آمده است. تنظیمات آزمون به صورت متا‌آزمون است و با فاز آزمون متداول یک شبکه‌ی عصبی فرق دارد. هر عددی که گزارش شده‌است، بر روی دسته‌های بدیع در مجموعه‌ی مقصد می‌باشد. یعنی در سطح دسته‌های پایه تغییر توزیع زیرمجموعه داریم و هیچ آموزشی روی دسته‌های پایه مقصد صورت نگرفته‌است. در جدول 
+\ref{table:thetaAnimalia}
+اطلاعات مربوط به مجموعه دادگان Animalia iNat مشخص شده و در جدول 
+\ref{table:thetaPlantae}
+اطلاعات و ارقام مربوط به مجموعه دادگان Plantae iNat آمده‌است. 
+
+\begin{table}[!htbp]
+	\caption{
+		عملکرد روش پیشنهادی و مقایسه با مدل‌های پایه روی مجموعه دادگان 
+Animalia iNat
+؛ در این جدول، منظور از مدل پایه (تخت) استفاده از روش پروتوتیپیکال در ریزدانه‌ترین سطح است. مدل‌هایی که پسوند 
+Cond
+دارند به این معنی است که طبق روش ارائه شده، از اطلاعات سطح درشت‌‌دانه به صورت مشروط استفاده می‌کنند. اعداد ستون آخر یعنی پیشگویی ابردسته برای زمانی است که دقت سطح درشت‌دانه صد درصد باشد و در واقع برچسب‌های ابردسته‌ها را به صورت صحیح بدانیم. 	
+}
+	\label{table:thetaAnimalia}
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{c|ccccccc}
+			\hline
+			& \multicolumn{7}{c}{Animalia iNat}                                                                                                                                                                                                                                                                                                                \\ \cline{2-8} 
+			&                                                                             & \multicolumn{4}{c}{W ابردسته برنده}                                                                  &                                                                           &                                                                                \\ \cline{3-6}
+			\multirow{-3}{*}{\diagbox[dir=NE,trim=rl,height=2.5\line]{مجموعه دادگان}{~~~~~~~~بدنه}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پایه\\ (تخت)\end{tabular}} & 1                       & 2                       & 5                       & 10                      & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}بهره\\ نسبی\end{tabular}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پیشگویی \\ ابردسته\end{tabular}} \\ \hline
+			Large DINO         &                                                                             & \textit{$50.95$}          & \textit{$52.83$}          & \textit{$53.55$}          & \textit{\pmb{$53.56$}} & {\color[HTML]{009901} }                                                   & $57.31$                                                                          \\
+			Cond. Large DINO   & \multirow{-2}{*}{$53.52$}                                                     & \textit{$54.83$}          & \textit{$56.33$}          & \textit{\pmb{$56.87$}} & \textit{$56.8$}           & \multirow{-2}{*}{{\color[HTML]{009901} $+6.3$}}                             & $60.12$                                                                          \\ \cline{1-1}
+			Giant DINO         &                                                                             & \textit{$58.64$}          & \textit{$60.77$}          & \textit{$61.55$}          & \textit{\pmb{$61.65$}} & {\color[HTML]{009901} }                                                   & $64.4$                                                                           \\
+			Cond. Giant DINO   & \multirow{-2}{*}{$61.68$}                                                     & \textit{$60.07$}          & \textit{$62.19$}          & \textit{$62.89$}          & \textit{\pmb{$62.92$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+2$}}                               & $65.48$                                                                          \\ \cline{1-1}
+			CLIP               &                                                                             & \textit{\pmb{$39.12$}} & \textit{$38.9$}           & \textit{$37.36$}          & \textit{$36.29$}          & {\color[HTML]{009901} }                                                   & $44.96$                                                                          \\
+			Cond. CLIP         & \multirow{-2}{*}{$33.88$}                                                     & \textit{$39.48$}          & \textit{$39.53$}          & \textit{$39.57$}          & \textit{\pmb{$39.61$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+16.9$}}                            & $43.48$                                                                          \\ \cline{1-1}
+			$V3$ Mobilenet       &                                                                             & \textit{$43.7$}           & \textit{\pmb{$44.39$}} & \textit{$43.77$}          & \textit{$43.15$}          & {\color[HTML]{009901} }                                                   & $50.2$                                                                           \\
+			Cond. $V3$ Mobilenet & \multirow{-2}{*}{$41.33$}                                                     & \textit{$43.6$}           & \textit{$44.39$}          & \textit{$44.8$}           & \textit{\pmb{$44.95$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+8.8$}}                             & $47.88$                                                                          \\ \cline{1-1}
+			$V2$ ConvNext        &                                                                             & \textit{$46.16$}          & \textit{$47.49$}          & \textit{\pmb{$47.69$}} & \textit{$47.57$}          & {\color[HTML]{009901} }                                                   & $52.83$                                                                          \\
+			Cond. $V2$ ConvNext  & \multirow{-2}{*}{$46.09$}                                                     & \textit{$45.85$}          & \textit{$47.75$}          & \textit{$48.81$}          & \textit{\pmb{$49.19$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+6.7$}}                             & $51.68$                                                                          \\ \hline
+		\end{tabular}%
+	}
+\end{table}
+
+
+\begin{table}[!htbp]
+	\caption{
+	عملکرد روش پیشنهادی و مقایسه با مدل‌های پایه روی مجموعه دادگان 
+Plantae iNat
+؛ در این جدول، منظور از مدل پایه (تخت) استفاده از روش پروتوتیپیکال در ریزدانه‌ترین سطح است. مدل‌هایی که پسوند 
+Cond
+دارند به این معنی است که طبق روش ارائه شده، از اطلاعات سطح درشت‌‌دانه به صورت مشروط استفاده می‌کنند. اعداد ستون آخر یعنی پیشگویی ابردسته برای زمانی است که دقت سطح درشت‌دانه صد درصد باشد و در واقع برچسب‌های ابردسته‌ها را به صورت صحیح بدانیم. 		
+}
+	\label{table:thetaPlantae}
+	\centering
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{c|ccccccc}
+			\hline
+			& \multicolumn{7}{c}{Plantae iNat}                                                                                                                                                                                                                                                                                                                \\ \cline{2-8} 
+			&                                                                             & \multicolumn{4}{c}{W ابردسته برنده}                                                                 &                                                                           &                                                                                \\ \cline{3-6}
+			\multirow{-3}{*}{\diagbox[dir=NE,trim=rl,height=2.5\line]{مجموعه دادگان}{~~~~~~~~بدنه}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پایه\\ (تخت)\end{tabular}} & 1                       & 2                      & 5                       & 10                      & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}بهره\\ نسبی\end{tabular}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پیشگویی \\ ابردسته\end{tabular}} \\ \hline
+			Large DINO              &                                                                             & \textit{$68.48$}          & \textit{$71.44$}         & \textit{$72.68$}          & \textit{\pmb{$72.94$}} & {\color[HTML]{009901} }                                                   & $77.91$                                                                          \\
+			Cond. Large DINO        & \multirow{-2}{*}{$72.87$}                                                     & \textit{$68.57$}          & \textit{$71.71$}         & \textit{\pmb{$73.02$}} & \textit{$73.02$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+0.2$}}                             & $77.99$                                                                          \\ \cline{1-1}
+			Giant DINO              &                                                                             & \textit{$69.66$}          & \textit{$72.86$}         & \textit{$74.49$}          & \textit{\pmb{$74.74$}} & {\color[HTML]{009901} }                                                   & $79.11$                                                                          \\
+			Cond. Giant DINO        & \multirow{-2}{*}{$74.77$}                                                     & \textit{$69.96$}          & \textit{$73.23$}         & \textit{$74.58$}          & \textit{\pmb{$74.96$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+0.3$}}                             & $79.54$                                                                          \\ \cline{1-1}
+			CLIP                    &                                                                             & \textit{\pmb{$51.54$}} & \textit{$49.63$}         & \textit{$45.75$}          & \textit{$43.19$}          & {\color[HTML]{009901} }                                                   & $58.9$                                                                           \\
+			Cond. CLIP              & \multirow{-2}{*}{$38.48$}                                                     & \textit{$50.26$}          & \textit{$50.4$}          & \textit{\pmb{$50.45$}} & \textit{$50.45$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+31.1$}}                            & 52                                                                             \\ \cline{1-1}
+			$V3$ Mobilenet            &                                                                             & \textit{\pmb{$49.88$}} & \textit{$47.94$}         & \textit{$44.37$}          & \textit{$41.4$}           & {\color[HTML]{009901} }                                                   & $57.72$                                                                          \\
+			Cond. $V3$ Mobilenet      & \multirow{-2}{*}{$37.15$}                                                     & \textit{$48.22$}          & \textit{$48.46$}         & \textit{\pmb{$48.49$}} & \textit{$48.47$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+30.5$}}                            & $50.41$                                                                          \\ \cline{1-1}
+			$V2$ ConvNext             &                                                                             & \textit{$61.94$}          & \textit{\pmb{$63.2$}} & \textit{$62.6$}           & \textit{$62.18$}          & {\color[HTML]{009901} }                                                   & $70.16$                                                                          \\
+			Cond. $V2$ ConvNext       & \multirow{-2}{*}{$61.02$}                                                     & \textit{$61.04$}          & \textit{$62.42$}         & \textit{\pmb{$62.47$}} & \textit{$62.47$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+2.4$}}                             & $68.08$                                                                          \\ \hline
+		\end{tabular}%
+	}
+\end{table}
+
+برای سنجش مورد سوم مطرح شده در قسمت
+\ref{sec:baselines}
+، آزمایش‌ها را با کنار گذاشتن سر 
+$f_\vartheta$
+بر روی تمامی بدنه‌ها تکرار کرده‌ایم. این نتایج برای هر مجموعه داده در جداول 
+\ref{}
+و 
+\ref{}
+آمده‌است. حالت پایه دسته‌بندی پروتوتیپیکال بر روی بازنمایی‌های حاصل از بدنه‌ها بدون هیچ آموزشی صورت پذیرفته‌است. همچنین با به کار بردن یک مدل درشت‌دانه آموزش دیده روی مجموعه‌ی مبدا، W ابردسته‌ی محتمل را حدس زده‌ایم و سپس با همان بدنه‌های بدون آموزش، به دسته‌بندی بین دسته‌های پایه این W ابردسته پرداخته‌ایم که در واقع همان حالت یکی از همه برنده می‌باشد.
+
 
 \section{منابع سخت‌افزاری}
 
 \section{جمع‌بندی}
 
+جمع بندی جمع بندی
+مصورسازی های tsne
