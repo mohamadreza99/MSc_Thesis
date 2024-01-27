@@ -3,89 +3,160 @@
 \setcounter{footnote}{0}
 \pagestyle{plain}
 
-در این فصل با انجام ارزیابی‌ها و آزمایش‌های متعدد مدل پیشنهادی را با کارهای پیشین مقایسه کرده و برتری عملکرد آن را روی دیتاست‌های مشهور این حوزه نمایش می‌دهیم. همچنین با انجام آزمایش‌های مختلفی سعی می‌کنیم تا مکانیزم‌های الگوریتم و مدل را بهتر شناسایی کنیم.
-
-\begin{table}[!htbp]
-	\caption{hello}
-	\label{table:thetaAnimalia}
-	\resizebox{\textwidth}{!}{%
-		\begin{tabular}{c|ccccccc}
-			\hline
-			& \multicolumn{7}{c}{Animalia iNat}                                                                                                                                                                                                                                                                                                                \\ \cline{2-8} 
-			&                                                                             & \multicolumn{4}{c}{W ابردسته برنده}                                                                  &                                                                           &                                                                                \\ \cline{3-6}
-			\multirow{-3}{*}{\diagbox[dir=NE,trim=rl,height=2.5\line]{مجموعه دادگان}{~~~~~~~~بدنه}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پایه\\ (تخت)\end{tabular}} & 1                       & 2                       & 5                       & 10                      & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}بهره\\ نسبی\end{tabular}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پیشگویی \\ ابردسته\end{tabular}} \\ \hline
-			Large DINO         &                                                                             & \textit{$50.95$}          & \textit{$52.83$}          & \textit{$53.55$}          & \textit{\pmb{$53.56$}} & {\color[HTML]{009901} }                                                   & $57.31$                                                                          \\
-			Cond. Large DINO   & \multirow{-2}{*}{$53.52$}                                                     & \textit{$54.83$}          & \textit{$56.33$}          & \textit{\pmb{$56.87$}} & \textit{$56.8$}           & \multirow{-2}{*}{{\color[HTML]{009901} $+6.3$}}                             & $60.12$                                                                          \\ \cline{1-1}
-			Giant DINO         &                                                                             & \textit{$58.64$}          & \textit{$60.77$}          & \textit{$61.55$}          & \textit{\pmb{$61.65$}} & {\color[HTML]{009901} }                                                   & $64.4$                                                                           \\
-			Cond. Giant DINO   & \multirow{-2}{*}{$61.68$}                                                     & \textit{$60.07$}          & \textit{$62.19$}          & \textit{$62.89$}          & \textit{\pmb{$62.92$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+2$}}                               & $65.48$                                                                          \\ \cline{1-1}
-			CLIP               &                                                                             & \textit{\pmb{$39.12$}} & \textit{$38.9$}           & \textit{$37.36$}          & \textit{$36.29$}          & {\color[HTML]{009901} }                                                   & $44.96$                                                                          \\
-			Cond. CLIP         & \multirow{-2}{*}{$33.88$}                                                     & \textit{$39.48$}          & \textit{$39.53$}          & \textit{$39.57$}          & \textit{\pmb{$39.61$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+16.9$}}                            & $43.48$                                                                          \\ \cline{1-1}
-			$V3$ Mobilenet       &                                                                             & \textit{$43.7$}           & \textit{\pmb{$44.39$}} & \textit{$43.77$}          & \textit{$43.15$}          & {\color[HTML]{009901} }                                                   & $50.2$                                                                           \\
-			Cond. $V3$ Mobilenet & \multirow{-2}{*}{$41.33$}                                                     & \textit{$43.6$}           & \textit{$44.39$}          & \textit{$44.8$}           & \textit{\pmb{$44.95$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+8.8$}}                             & $47.88$                                                                          \\ \cline{1-1}
-			$V2$ ConvNext        &                                                                             & \textit{$46.16$}          & \textit{$47.49$}          & \textit{\pmb{$47.69$}} & \textit{$47.57$}          & {\color[HTML]{009901} }                                                   & $52.83$                                                                          \\
-			Cond. $V2$ ConvNext  & \multirow{-2}{*}{$46.09$}                                                     & \textit{$45.85$}          & \textit{$47.75$}          & \textit{$48.81$}          & \textit{\pmb{$49.19$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+6.7$}}                             & $51.68$                                                                          \\ \hline
-		\end{tabular}%
-	}
-\end{table}
-
-
-\begin{table}[]
-	\caption{hello2}
-	\label{table:thetaPlantae}
-	\resizebox{\textwidth}{!}{%
-		\begin{tabular}{c|ccccccc}
-			\hline
-			& \multicolumn{7}{c}{Plantae iNat}                                                                                                                                                                                                                                                                                                                \\ \cline{2-8} 
-			&                                                                             & \multicolumn{4}{c}{W ابردسته برنده}                                                                 &                                                                           &                                                                                \\ \cline{3-6}
-			\multirow{-3}{*}{\diagbox[dir=NE,trim=rl,height=2.5\line]{مجموعه دادگان}{~~~~~~~~بدنه}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پایه\\ (تخت)\end{tabular}} & 1                       & 2                      & 5                       & 10                      & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}بهره\\ نسبی\end{tabular}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پیشگویی \\ ابردسته\end{tabular}} \\ \hline
-			Large DINO              &                                                                             & \textit{$68.48$}          & \textit{$71.44$}         & \textit{$72.68$}          & \textit{\pmb{$72.94$}} & {\color[HTML]{009901} }                                                   & $77.91$                                                                          \\
-			Cond. Large DINO        & \multirow{-2}{*}{$72.87$}                                                     & \textit{$68.57$}          & \textit{$71.71$}         & \textit{\pmb{$73.02$}} & \textit{$73.02$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+0.2$}}                             & $77.99$                                                                          \\ \cline{1-1}
-			Giant DINO              &                                                                             & \textit{$69.66$}          & \textit{$72.86$}         & \textit{$74.49$}          & \textit{\pmb{$74.74$}} & {\color[HTML]{009901} }                                                   & $79.11$                                                                          \\
-			Cond. Giant DINO        & \multirow{-2}{*}{$74.77$}                                                     & \textit{$69.96$}          & \textit{$73.23$}         & \textit{$74.58$}          & \textit{\pmb{$74.96$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+0.3$}}                             & $79.54$                                                                          \\ \cline{1-1}
-			CLIP                    &                                                                             & \textit{\pmb{$51.54$}} & \textit{$49.63$}         & \textit{$45.75$}          & \textit{$43.19$}          & {\color[HTML]{009901} }                                                   & $58.9$                                                                           \\
-			Cond. CLIP              & \multirow{-2}{*}{$38.48$}                                                     & \textit{$50.26$}          & \textit{$50.4$}          & \textit{\pmb{$50.45$}} & \textit{$50.45$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+31.1$}}                            & 52                                                                             \\ \cline{1-1}
-			$V3$ Mobilenet            &                                                                             & \textit{\pmb{$49.88$}} & \textit{$47.94$}         & \textit{$44.37$}          & \textit{$41.4$}           & {\color[HTML]{009901} }                                                   & $57.72$                                                                          \\
-			Cond. $V3$ Mobilenet      & \multirow{-2}{*}{$37.15$}                                                     & \textit{$48.22$}          & \textit{$48.46$}         & \textit{\pmb{$48.49$}} & \textit{$48.47$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+30.5$}}                            & $50.41$                                                                          \\ \cline{1-1}
-			$V2$ ConvNext             &                                                                             & \textit{$61.94$}          & \textit{\pmb{$63.2$}} & \textit{$62.6$}           & \textit{$62.18$}          & {\color[HTML]{009901} }                                                   & $70.16$                                                                          \\
-			Cond. $V2$ ConvNext       & \multirow{-2}{*}{$61.02$}                                                     & \textit{$61.04$}          & \textit{$62.42$}         & \textit{\pmb{$62.47$}} & \textit{$62.47$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+2.4$}}                             & $68.08$                                                                          \\ \hline
-		\end{tabular}%
-	}
-\end{table}
-
-
-
-\begin{table}[!htb]
-	\caption{Accuracy of the coarse-grained classifier on $\mathcal{D}_{super, target}$, before and after semi-supervised fine-tuning.}
-	\label{table:phi}
-	\centering
-	\resizebox{\textwidth}{!}{
-		\begin{tabular}{c|cc|c|cc|cc}
-			\hline
-			\diagbox[dir=NE]{تنظیمات}{مجموعه دادگان}& ۱-بهترین & \begin{tabular}[c]{@{}c@{}}۵-بهترین \end{tabular} & \begin{tabular}[c]{@{}c@{}}صحت\\ شبه‌برچسب\end{tabular} & \begin{tabular}[c]{@{}c@{}}۱-بهترین \\ تنظیم بهینه\end{tabular} & \begin{tabular}[c]{@{}c@{}}۵-بهترین \\ تنظیم بهینه\end{tabular} & \begin{tabular}[c]{@{}c@{}}بهره نسبی \\ ۱-بهترین\end{tabular} & \begin{tabular}[c]{@{}c@{}}بهره نسبی \\ ۵-بهترین\end{tabular} \\ \hline
-			Animalia iNat & $87.38$ & $97.26$                                                  & $95.86$                                                        & $88.88$       & $97.83$                                                        & {\color[HTML]{009901} $+1.7$}                                    & {\color[HTML]{009901} $+0.6$}                                    \\
-			Plantae iNat  & $79.68$ & $92.45$                                                  & $90.51$                                                        & $87.86$       & $97.1$                                                         & {\color[HTML]{009901} $+10.3$}                                    & {\color[HTML]{009901} $+5$}                                      \\ \hline
-		\end{tabular}
-	}
-\end{table}
-
-\begin{table}[!htb]
-	\caption{Quantitative Details of iNat Animalia and iNat Plantae datasets.}
-	\label{table:dataset}
-	\centering
-	% \resizebox{\textwidth}{!}{
-		\begin{tabular}{c|ccc}
-			\hline
-			\diagbox[dir=NE]{مشخصه‌ها}{مجموعه دادگان}& \begin{tabular}[c]{@{}c@{}}تعداد \\ابردسته‌ها\end{tabular} & \begin{tabular}[c]{@{}c@{}}تعداد دسته‌های پایه\\ در مجموعه مبدا\end{tabular} & \begin{tabular}[c]{@{}c@{}}تعداد دسته‌های پایه\\در مجموعه مقصد\end{tabular} \\ \hline
-			Animalia iNat & 74                                                            & 1728                                                                       & 1500                                                                       \\
-			Plantae iNat & 58                                                            & 1450                                                                       & 1255                                                                       \\ \hline
-		\end{tabular}
-		% }
-\end{table}
-
+در این فصل با انجام ارزیابی‌ها و آزمایش‌های متعدد کارایی مدل پیشنهادی را نشان می‌دهیم. این آزمایش‌ها را بر روی گستره‌ای از بدنه‌های پیش‌آموزش دیده انجام داده‌ایم تا عملکرد روش را در حضور بدنه‌های ضعیف تا قوی بسنجیم. علاوه بر آن، با مقایسه عملکرد مدل از جنبه‌های مختلف و در تنظیمات مختلف، جامعیت راه‌حل نشان داده شده‌است. از طرفی، توضیح داده‌ایم چگونه مجموعه دادگان بزرگ مقیاس را در قالب تنظیمات رویکرد خود، تطابق داده‌ایم.
 
 \section{معرفی مجموعه داده‌های مورد استفاده} \label{sec:dataset}
 
+در مسائل بزرگ مقیاس، فراهم کردن یک مجموعه دادگان با تعداد دسته‌ی زیاد زحمت زیادی را می‌طلبد. دلیل این موضوع سختی فرآیند 
+\trans{برچسب‌زنی}{Annotation}
+و
+\trans{مناسب‌سازی}{Curation}
+ داده‌ها است. در نتیجه‌ی این موارد، در مسائل حوزه‌ی بینایی کامپیوتر تعداد محدودی مجموعه داده با تعداد دسته‌ی بیش از ۱۰۰۰ وجود دارد. علاوه بر این، چالش‌های دیگری در ساختار و فرآیند شکل‌گیری مجموعه دادگان بزرگ مقیاس دیده می‌شود. اینگونه مجموعه دادگان، معمولا به صورت عام منظوره جمع‌اوری شده‌اند و بین نمونه‌های دسته‌ها، انسجام کافی وجود ندارد و در واقع بین دسته‌ها
+ \trans{وابستگی متقابل}{Interdependency}
+  دیده می‌شود. 
+  
+  روش پیشنهادی ما به وجود سلسله‌مراتب در فاز متاآموزش نیاز دارد، به همین جهت تمرکزمان روی مجموعه‌داده‌هایی بوده که از پیش یک سلسله‌مراتب از پیش تعریف شده داشته‌اند. همانطور که در بخش 
+  \ref{sec:preliminaries}
+  بیان شد، دسته‌های پایه در مبدا و مقصد (فازهای متاآموزش و متاآزمون) ناسازگار اند و از لحاظ داده و برچسب هیچ اشتراکی ندارند، اما ابردسته‌های متاآزمون زیرمجموعه‌ای از ابردسته‌های فاز متاآموزش هستند. به همین جهت، ما یک
+  \trans{تغییر توزیع زیرجمعیت}{Sub-Population Shift}
+   را تحمیل کرده‌ایم که مقاومت مدل را در تطابق نمونه محدود به داده‌های مقصد بسنجیم. 
+  از این رو، ما از دو مجموعه داده‌ که حاوی
+ \trans{سطوح ریزدانگی متفاوت}{Multi Granular}
+   اند، بهره برده‌ایم و آن‌ها را با تنظیمات خود تطابق داده‌ایم. مجموعه‌ دادگانی که استفاده کردیم عبارت اند از 
+   Animalia iNat 
+   و
+   Plantae iNat 
+   \cite{inat}
+   .
+   چون ما از بدنه‌های پیش‌آموزش دیده بنیادی استفاده می‌کنیم، نکته‌ی بسیار مهمی که باید رعایت می‌کردیم این است که مجموعه دادگانی را انتخاب کنیم که در فرآیند پیش‌اموزش آن بدنه‌ها به کار نرفته باشند و در واقع نمونه‌ها از پیش دیده نشده باشند؛ چرا که می‌خواهیم قابلیت یادگیری نمونه محدود مدل در حضور دسته‌های بدیع را به صورت واقعی بسنجیم. در زیر به معرفی جزییات مجموعه دادگان مورد استفاده می‌پردازیم.
+   
+  \begin{itemize}
+  	\item \textbf{Animalia iNat}
+  	یک بخش از مجموعه دادگان بزرگ مقیاس 
+  	\lr{iNaturalist-2021}
+  	است که در مجموع k10 دسته دارد. در این مجموعه دادگان، دسته‌های مربوط به جانداران جمع‌آوری شده‌است. به ازای هر دسته‌ی پایه در ریزدانه‌ترین سطح ممکن، تمامی پدران آن براساس دسته‌بندی شناخته‌شده‌ی 
+  	\lr{Taxonomic Rank}
+  	ارائه شده‌است که در شکل
+  	\ref{fig:taxonomy}
+  	آمده‌است. این سلسله‌مراتب در iNat از سطح Kingdom به عنوان درشت‌دانه‌ترین شروع می‌شود و تا Species به عنوان ریزدانه‌ترین ادامه می‌یابد. در واقع iNat در سطح Kingdom شامل سه دسته‌ی 
+  Animalia
+  ،
+  Plantae
+  و 
+  Fungi 
+  می‌باشد که به ترتیب شامل جانوران، گیاهان و قارچ‌ها می‌شوند. ما دسته‌های مربوط به Fungi را وارد آزمایش نکرده‌ایم چرا که بسیار محدود اند و در حدی نیستند که به عنوان مجموعه بزرگ مقیاس به آن نگاه کنیم. به قسمت مرتبط با حیوانات این مجموعه دادگان به صورت 
+  Animalia iNat
+  اشاره می‌کنیم که گستره‌ی وسیعی از گونه‌‌های جانوری را دربر می‌گیرد. به جهت تعریف سطح درشت‌دانه و ابردسته‌ها، پنجمین سطح درخت سلسله‌مراتب که به سطح Family مشهور است را به عنوان ابردسته‌ها مشخص کرده‌ایم که ۷۴ ابردسته حاصل شده‌است. از بین دسته‌های پایه در ریزدانه‌ترین سطح، ۱۷۲۸ دسته را به عنوان مجموعه‌ی مبدا و ۱۵۰۰ دسته را به عنوان مجموعه‌ی مقصد و برای فاز متاآزمون جدا کرده‌ایم. یعنی در مجموع ۳۲۲۸ دسته‌ی پایه داریم که بین متاآموزش و متا‌آزمون به گونه‌ای تقسیم شده اند که از هر ابردسته به تعداد تقریبا مساوی در هر دو طرف باشد. این موضوع به دلیل تحمیل تغییر توزیع زیرجمعیت است.
+     \begin{figure}[!htbp]
+  	\begin{center}
+  		\includegraphics[width=0.8\textwidth]{images/taxonomy.png}
+  		%		\vspace{0.5in}
+  		\caption{
+  			دسته‌بندی زیستی موجودات مطابق با 
+  			\lr{Taxonomic Rank}
+  			؛
+  			از بالا به پایین سطوح درشت‌دانه تا ریزدانه چیده شده‌اند و سلسله‌مراتب مربوط به روباه قرمز در طول درخت سلسله‌مراتب مشخص شده‌است
+  			\cite{taxonomicRankWiki}.
+  		}	
+  		\label{fig:taxonomy}
+  	\end{center}
+  \end{figure}
+
+	\item \textbf{Plantae iNat}
+	قسمتی از مجموعه داده‌‌های 
+	\lr{iNaturalist-2021}
+	است که گونه‌های گیاهی را پوشش می‌دهد. این مجموعه شامل ۲۷۰۵ دسته‌ی پایه است که مطابق آنچه در قسمت قبل توضیح دادیم، بین مجموعه‌ی مبدا و مقصد به گونه‌ای تقسیم شده که هر ابردسته به تعداد تقریبا مساوی دسته‌ی پایه در فاز متاآموزش و متاآزمون داشته باشد. به این ترتیب به یک تقسیم‌بندی ۱۴۵۰ دسته برای مجموعه‌ی مبدا و ۱۲۵۵ دسته برای مجموعه‌ی مقصد در قالب ۵۸ ابردسته‌ی مشترک رسیده‌ایم. ابردسته‌ها از سطح Family در درخت سلسله‌مراتب انتخاب شده‌اند. در جدول 
+	\ref{table:dataset}
+	جزییات مجموعه دادگان ساخته شده آمده‌است.
+\begin{table}[!htbp]
+	\caption{جزییات کمی مجموعه دادگان 
+Animalia iNat
+و 
+Plantae iNat
+و تقسیم‌بندی آن‌ها در قالب تنظیمات مسئله.	
+}
+	\label{table:dataset}
+	\centering
+	% \resizebox{\textwidth}{!}{
+			\begin{tabular}{c|ccc}
+					\hline
+					\diagbox[dir=NE]{مشخصه‌ها}{مجموعه دادگان}& \begin{tabular}[c]{@{}c@{}}تعداد \\ابردسته‌ها\end{tabular} & \begin{tabular}[c]{@{}c@{}}تعداد دسته‌های پایه\\ در مجموعه مبدا\end{tabular} & \begin{tabular}[c]{@{}c@{}}تعداد دسته‌های پایه\\در مجموعه مقصد\end{tabular} \\ \hline
+					Animalia iNat & 74                                                            & 1728                                                                       & 1500                                                                       \\
+					Plantae iNat & 58                                                            & 1450                                                                       & 1255                                                                       \\ \hline
+				\end{tabular}
+			% }
+\end{table}
+	
+  \end{itemize}
+
 \section{معرفی بدنه استخراج‌گر ویژگی}
+
+سلام
+   
+
+%\begin{table}[!htbp]
+%	\caption{hello}
+%	\label{table:thetaAnimalia}
+%	\resizebox{\textwidth}{!}{%
+%		\begin{tabular}{c|ccccccc}
+%			\hline
+%			& \multicolumn{7}{c}{Animalia iNat}                                                                                                                                                                                                                                                                                                                \\ \cline{2-8} 
+%			&                                                                             & \multicolumn{4}{c}{W ابردسته برنده}                                                                  &                                                                           &                                                                                \\ \cline{3-6}
+%			\multirow{-3}{*}{\diagbox[dir=NE,trim=rl,height=2.5\line]{مجموعه دادگان}{~~~~~~~~بدنه}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پایه\\ (تخت)\end{tabular}} & 1                       & 2                       & 5                       & 10                      & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}بهره\\ نسبی\end{tabular}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پیشگویی \\ ابردسته\end{tabular}} \\ \hline
+%			Large DINO         &                                                                             & \textit{$50.95$}          & \textit{$52.83$}          & \textit{$53.55$}          & \textit{\pmb{$53.56$}} & {\color[HTML]{009901} }                                                   & $57.31$                                                                          \\
+%			Cond. Large DINO   & \multirow{-2}{*}{$53.52$}                                                     & \textit{$54.83$}          & \textit{$56.33$}          & \textit{\pmb{$56.87$}} & \textit{$56.8$}           & \multirow{-2}{*}{{\color[HTML]{009901} $+6.3$}}                             & $60.12$                                                                          \\ \cline{1-1}
+%			Giant DINO         &                                                                             & \textit{$58.64$}          & \textit{$60.77$}          & \textit{$61.55$}          & \textit{\pmb{$61.65$}} & {\color[HTML]{009901} }                                                   & $64.4$                                                                           \\
+%			Cond. Giant DINO   & \multirow{-2}{*}{$61.68$}                                                     & \textit{$60.07$}          & \textit{$62.19$}          & \textit{$62.89$}          & \textit{\pmb{$62.92$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+2$}}                               & $65.48$                                                                          \\ \cline{1-1}
+%			CLIP               &                                                                             & \textit{\pmb{$39.12$}} & \textit{$38.9$}           & \textit{$37.36$}          & \textit{$36.29$}          & {\color[HTML]{009901} }                                                   & $44.96$                                                                          \\
+%			Cond. CLIP         & \multirow{-2}{*}{$33.88$}                                                     & \textit{$39.48$}          & \textit{$39.53$}          & \textit{$39.57$}          & \textit{\pmb{$39.61$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+16.9$}}                            & $43.48$                                                                          \\ \cline{1-1}
+%			$V3$ Mobilenet       &                                                                             & \textit{$43.7$}           & \textit{\pmb{$44.39$}} & \textit{$43.77$}          & \textit{$43.15$}          & {\color[HTML]{009901} }                                                   & $50.2$                                                                           \\
+%			Cond. $V3$ Mobilenet & \multirow{-2}{*}{$41.33$}                                                     & \textit{$43.6$}           & \textit{$44.39$}          & \textit{$44.8$}           & \textit{\pmb{$44.95$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+8.8$}}                             & $47.88$                                                                          \\ \cline{1-1}
+%			$V2$ ConvNext        &                                                                             & \textit{$46.16$}          & \textit{$47.49$}          & \textit{\pmb{$47.69$}} & \textit{$47.57$}          & {\color[HTML]{009901} }                                                   & $52.83$                                                                          \\
+%			Cond. $V2$ ConvNext  & \multirow{-2}{*}{$46.09$}                                                     & \textit{$45.85$}          & \textit{$47.75$}          & \textit{$48.81$}          & \textit{\pmb{$49.19$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+6.7$}}                             & $51.68$                                                                          \\ \hline
+%		\end{tabular}%
+%	}
+%\end{table}
+%
+%
+%\begin{table}[!htbp]
+%	\caption{hello2}
+%	\label{table:thetaPlantae}
+%	\resizebox{\textwidth}{!}{%
+%		\begin{tabular}{c|ccccccc}
+%			\hline
+%			& \multicolumn{7}{c}{Plantae iNat}                                                                                                                                                                                                                                                                                                                \\ \cline{2-8} 
+%			&                                                                             & \multicolumn{4}{c}{W ابردسته برنده}                                                                 &                                                                           &                                                                                \\ \cline{3-6}
+%			\multirow{-3}{*}{\diagbox[dir=NE,trim=rl,height=2.5\line]{مجموعه دادگان}{~~~~~~~~بدنه}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پایه\\ (تخت)\end{tabular}} & 1                       & 2                      & 5                       & 10                      & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}بهره\\ نسبی\end{tabular}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پیشگویی \\ ابردسته\end{tabular}} \\ \hline
+%			Large DINO              &                                                                             & \textit{$68.48$}          & \textit{$71.44$}         & \textit{$72.68$}          & \textit{\pmb{$72.94$}} & {\color[HTML]{009901} }                                                   & $77.91$                                                                          \\
+%			Cond. Large DINO        & \multirow{-2}{*}{$72.87$}                                                     & \textit{$68.57$}          & \textit{$71.71$}         & \textit{\pmb{$73.02$}} & \textit{$73.02$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+0.2$}}                             & $77.99$                                                                          \\ \cline{1-1}
+%			Giant DINO              &                                                                             & \textit{$69.66$}          & \textit{$72.86$}         & \textit{$74.49$}          & \textit{\pmb{$74.74$}} & {\color[HTML]{009901} }                                                   & $79.11$                                                                          \\
+%			Cond. Giant DINO        & \multirow{-2}{*}{$74.77$}                                                     & \textit{$69.96$}          & \textit{$73.23$}         & \textit{$74.58$}          & \textit{\pmb{$74.96$}} & \multirow{-2}{*}{{\color[HTML]{009901} $+0.3$}}                             & $79.54$                                                                          \\ \cline{1-1}
+%			CLIP                    &                                                                             & \textit{\pmb{$51.54$}} & \textit{$49.63$}         & \textit{$45.75$}          & \textit{$43.19$}          & {\color[HTML]{009901} }                                                   & $58.9$                                                                           \\
+%			Cond. CLIP              & \multirow{-2}{*}{$38.48$}                                                     & \textit{$50.26$}          & \textit{$50.4$}          & \textit{\pmb{$50.45$}} & \textit{$50.45$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+31.1$}}                            & 52                                                                             \\ \cline{1-1}
+%			$V3$ Mobilenet            &                                                                             & \textit{\pmb{$49.88$}} & \textit{$47.94$}         & \textit{$44.37$}          & \textit{$41.4$}           & {\color[HTML]{009901} }                                                   & $57.72$                                                                          \\
+%			Cond. $V3$ Mobilenet      & \multirow{-2}{*}{$37.15$}                                                     & \textit{$48.22$}          & \textit{$48.46$}         & \textit{\pmb{$48.49$}} & \textit{$48.47$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+30.5$}}                            & $50.41$                                                                          \\ \cline{1-1}
+%			$V2$ ConvNext             &                                                                             & \textit{$61.94$}          & \textit{\pmb{$63.2$}} & \textit{$62.6$}           & \textit{$62.18$}          & {\color[HTML]{009901} }                                                   & $70.16$                                                                          \\
+%			Cond. $V2$ ConvNext       & \multirow{-2}{*}{$61.02$}                                                     & \textit{$61.04$}          & \textit{$62.42$}         & \textit{\pmb{$62.47$}} & \textit{$62.47$}          & \multirow{-2}{*}{{\color[HTML]{009901} $+2.4$}}                             & $68.08$                                                                          \\ \hline
+%		\end{tabular}%
+%	}
+%\end{table}
+%
+%
+%
+%\begin{table}[!htbp]
+%	\caption{Accuracy of the coarse-grained classifier on $\mathcal{D}_{super, target}$, before and after semi-supervised fine-tuning.}
+%	\label{table:phi}
+%	\centering
+%	\resizebox{\textwidth}{!}{
+%		\begin{tabular}{c|cc|c|cc|cc}
+%			\hline
+%			\diagbox[dir=NE]{تنظیمات}{مجموعه دادگان}& ۱-بهترین & \begin{tabular}[c]{@{}c@{}}۵-بهترین \end{tabular} & \begin{tabular}[c]{@{}c@{}}صحت\\ شبه‌برچسب\end{tabular} & \begin{tabular}[c]{@{}c@{}}۱-بهترین \\ تنظیم بهینه\end{tabular} & \begin{tabular}[c]{@{}c@{}}۵-بهترین \\ تنظیم بهینه\end{tabular} & \begin{tabular}[c]{@{}c@{}}بهره نسبی \\ ۱-بهترین\end{tabular} & \begin{tabular}[c]{@{}c@{}}بهره نسبی \\ ۵-بهترین\end{tabular} \\ \hline
+%			Animalia iNat & $87.38$ & $97.26$                                                  & $95.86$                                                        & $88.88$       & $97.83$                                                        & {\color[HTML]{009901} $+1.7$}                                    & {\color[HTML]{009901} $+0.6$}                                    \\
+%			Plantae iNat  & $79.68$ & $92.45$                                                  & $90.51$                                                        & $87.86$       & $97.1$                                                         & {\color[HTML]{009901} $+10.3$}                                    & {\color[HTML]{009901} $+5$}                                      \\ \hline
+%		\end{tabular}
+%	}
+%\end{table}
+%
 
 \section{جزییات معماری سطح درشت‌دانه}
 
