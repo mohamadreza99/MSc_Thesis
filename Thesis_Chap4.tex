@@ -259,11 +259,11 @@ $g_\theta$
 
 \section{نتایج}
 
-ارزیابی عملکرد روش پیشنهادی روی مجموعه دادگان معرفی شده به ازای بدنه‌های مختلف در این بخش آمده است. تنظیمات آزمون به صورت متا‌آزمون است و با فاز آزمون متداول یک شبکه‌ی عصبی فرق دارد. هر عددی که گزارش شده‌است، بر روی دسته‌های بدیع در مجموعه‌ی مقصد می‌باشد. یعنی در سطح دسته‌های پایه تغییر توزیع زیرمجموعه داریم و هیچ آموزشی روی دسته‌های پایه مقصد صورت نگرفته‌است. در جدول 
+ارزیابی عملکرد روش پیشنهادی روی مجموعه دادگان معرفی شده به ازای بدنه‌های مختلف در این بخش آمده است. تنظیمات فاز تست به صورت متا‌آزمون است و با فاز آزمون متداول یک شبکه‌ی عصبی فرق دارد. هر عددی که گزارش شده‌است، بر روی دسته‌های بدیع در مجموعه‌ی مقصد می‌باشد. یعنی در سطح دسته‌های پایه تغییر توزیع زیرمجموعه داریم و هیچ آموزشی روی دسته‌های پایه مقصد صورت نگرفته‌است. در جدول 
 \ref{table:thetaAnimalia}
 اطلاعات مربوط به مجموعه دادگان Animalia iNat مشخص شده و در جدول 
 \ref{table:thetaPlantae}
-اطلاعات و ارقام مربوط به مجموعه دادگان Plantae iNat آمده‌است. 
+اطلاعات و ارقام مربوط به مجموعه دادگان Plantae iNat آمده‌است. همانطور که از این جداول مشخص است، نسبت به مدل پایه تخت در همه‌ی موارد افزایش داشته‌ایم. با اینکه این بهبود در بدنه‌های بنیادی خیلی بزرگ مانند Dino که تعداد پارامتر خیلی بالایی دارند، محدود بوده است اما در بدنه‌ی بنیادی دیگر مانند CLIP افزایش چشمگیری را شاهد هستیم. از طرفی بر روی بدنه‌های متوسط و کوچک با معماری‌های متفاوت مانند MobileNet و ConvNext هم بهبود قابل توجهی داشته‌ایم. از طرفی استراتژی ترکیب اطلاعات سطح درشت‌دانه با ریزدانه در یک قالب بیزی که با پسوند Cond مشخص شده‌است در همه‌ی موارد موثر بوده و با افزایش صحت مواجه هستیم.
 
 \begin{table}[!htbp]
 	\caption{
@@ -331,47 +331,15 @@ Cond
 ، آزمایش‌ها را با کنار گذاشتن سر 
 $f_\vartheta$
 بر روی تمامی بدنه‌ها تکرار کرده‌ایم. این نتایج برای هر مجموعه داده در جداول 
-\ref{}
+\ref{table:zeroshotanimalia}
 و 
-\ref{}
-آمده‌است. حالت پایه دسته‌بندی پروتوتیپیکال بر روی بازنمایی‌های حاصل از بدنه‌ها بدون هیچ آموزشی صورت پذیرفته‌است. همچنین با به کار بردن یک مدل درشت‌دانه آموزش دیده روی مجموعه‌ی مبدا، W ابردسته‌ی محتمل را حدس زده‌ایم و سپس با همان بدنه‌های بدون آموزش، به دسته‌بندی بین دسته‌های پایه این W ابردسته پرداخته‌ایم که در واقع همان حالت یکی از همه برنده می‌باشد.
+\ref{table:zeroshotplantae}
+آمده‌است. حالت پایه دسته‌بندی پروتوتیپیکال بر روی بازنمایی‌های حاصل از بدنه‌ها بدون هیچ آموزشی صورت پذیرفته‌است. همچنین با به کار بردن یک مدل درشت‌دانه آموزش دیده روی مجموعه‌ی مبدا، W ابردسته‌ی محتمل را حدس زده‌ایم و سپس با همان بدنه‌های بدون آموزش، به دسته‌بندی بین دسته‌های پایه این W ابردسته پرداخته‌ایم که در واقع همان حالت یکی از همه برنده می‌باشد. در این مورد با توجه به جداول، تاثیر سلسله‌مراتبی کردن دسته‌بندی حتی در تنظیمات بدون آموزش مشهود است. با توجه به دقت ستون پیشگویی ابردسته، اگر بر روی دسته‌بند سطح درشت‌دانه بیشتر کار شود، این افزایش بهبود حتی بر روی بدنه‌های خیلی بزرگ مانند Dino هم اثرش را نشان می‌دهد.
 
 
-\section{منابع سخت‌افزاری}
-
-\section{جمع‌بندی}
-
-جمع بندی جمع بندی
-مصورسازی های tsne
-
-\begin{figure}[!htbp]
-	\centering
-	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/tsne_animalia.png}}
-	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/tsne_plantae.png}}
-	\caption{
-		مشاهده دقت‌  متوسط مدل‌ها (چپ) و دقت روی کلاس اول (راست)
-		در اثر افزایش تعداد کلاس‌های مشاهده شده بر روی دیتاست Omniglot.
-		همانطور که مشاهده می‌شود، با افزایش تعداد کلاس‌ها دقت همه مدل‌ها افت می‌کند. اما باید توجه کرد که افت به وجود آمده در مدل‌های مولدی و به خصوص مدل GeMCL بسیار کمتر از سایر مدل‌هاست. این مشاهده به آن علت است که مدل‌های مولدی مشکل فراموشی ندارند و افت دقت تنها در اثر وجود مشکل عمومیت بخشی است. در حالی که مدل‌های تمایزی دارای هر دو مشکل هستند.
-	}
-	\label{fig:tsne}
-\end{figure}
-
-\begin{figure}[!htbp]
-	\centering
-	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/animalia_free1accuracy.png}}
-	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/animalia_top1accuracytrain.png}}
-	
-	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/plantae_free1accuracy.png}}
-	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/plantae_top1accuracytrain.png}}
-	\caption{
-		کپشن کپشن کپشن
-	}
-	\label{fig:barchart}
-\end{figure}
-
-
-\begin{table}[]
+\begin{table}[!htbp]
 	\caption{زیروشات انیمالیا}
+	\label{table:zeroshotanimalia}
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{c|cclcccc}
 			\hline
@@ -389,8 +357,9 @@ $f_\vartheta$
 
 
 
-\begin{table}[]
+\begin{table}[!htbp]
 	\caption{زیروشات پلنتایی}
+	\label{table:zeroshotplantae}
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{c|ccccccc}
 			\hline
@@ -404,3 +373,50 @@ $f_\vartheta$
 		\end{tabular}%
 	}
 \end{table}
+
+همچنین در نمودار 
+\ref{}
+، به مقایسه‌ی 
+
+\begin{figure}[!htbp]
+	\centering
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/animalia_free1accuracy.png}}
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/animalia_top1accuracytrain.png}}
+	
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/plantae_free1accuracy.png}}
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/plantae_top1accuracytrain.png}}
+	\caption{
+		کپشن کپشن کپشن
+	}
+	\label{fig:barchart}
+\end{figure}
+
+
+\section{منابع سخت‌افزاری}
+
+در این پژوهش از پردازنده‌های گرافیکی 
+\lr{NVIDIA GeForce RTX 3080 Ti}
+با ۱۲ گیگابایت حافظه‌ی RAM و 
+\lr{NVIDIA Quadro RTX 8000}
+با ۴۸ گیگابایت حافظه‌ی RAM بهره برده‌ایم. برای آموزش مدل‌های سطوح درشت‌دانه از گرافیک ۳۰۸۰ و برای آموزش مدل‌های سطوح ریز‌دانه از گرافیک Quadro استفاده کرده‌ایم. با توجه به طراحی قسمت قابل آموزش یعنی 
+$f_\varphi$
+و 
+$f_\vartheta$
+به صورت یک شبکه‌ی بسیار سبک خطی یک یا دو لایه، از بهینگی پیچیدگی محاسباتی بالا برای آموزش در تعدد دسته‌ها استفاده کرده‌ایم. همچنین در پیاده‌سازی کد، انواع روش‌های بهینگی محاسباتی از جمله Cache کردن بازنمایی‌ها به صورت گسترده پیاده‌سازی شده‌است.
+
+
+\section{جمع‌بندی}
+
+جمع بندی جمع بندی
+مصورسازی های tsne
+
+\begin{figure}[!htbp]
+	\centering
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/tsne_animalia.png}}
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/tsne_plantae.png}}
+	\caption{
+		کپشن
+	}
+	\label{fig:tsne}
+\end{figure}
+
