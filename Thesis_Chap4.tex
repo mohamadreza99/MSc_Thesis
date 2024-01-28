@@ -343,3 +343,64 @@ $f_\vartheta$
 
 جمع بندی جمع بندی
 مصورسازی های tsne
+
+\begin{figure}[!htbp]
+	\centering
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/tsne_animalia.png}}
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/tsne_plantae.png}}
+	\caption{
+		مشاهده دقت‌  متوسط مدل‌ها (چپ) و دقت روی کلاس اول (راست)
+		در اثر افزایش تعداد کلاس‌های مشاهده شده بر روی دیتاست Omniglot.
+		همانطور که مشاهده می‌شود، با افزایش تعداد کلاس‌ها دقت همه مدل‌ها افت می‌کند. اما باید توجه کرد که افت به وجود آمده در مدل‌های مولدی و به خصوص مدل GeMCL بسیار کمتر از سایر مدل‌هاست. این مشاهده به آن علت است که مدل‌های مولدی مشکل فراموشی ندارند و افت دقت تنها در اثر وجود مشکل عمومیت بخشی است. در حالی که مدل‌های تمایزی دارای هر دو مشکل هستند.
+	}
+	\label{fig:tsne}
+\end{figure}
+
+\begin{figure}[!htbp]
+	\centering
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/animalia_free1accuracy.png}}
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/animalia_top1accuracytrain.png}}
+	
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/plantae_free1accuracy.png}}
+	\subfigure[]{\includegraphics[width=0.49\linewidth]{images/plantae_top1accuracytrain.png}}
+	\caption{
+		کپشن کپشن کپشن
+	}
+	\label{fig:barchart}
+\end{figure}
+
+
+\begin{table}[]
+	\caption{زیروشات انیمالیا}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{c|cclcccc}
+			\hline
+			& \multicolumn{7}{c}{Animalia iNat}                                                                                                                                                                                                                                                                                              \\ \cline{2-8} 
+			&                                                                             & \multicolumn{4}{c}{W ابردسته برنده}                                              &                                                                           &                                                                                         \\ \cline{3-6}
+			\multirow{-3}{*}{\diagbox[dir=NE,trim=rl,height=2.5\line]{تنظیمات}{~~~~~~~~بدنه}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پایه\\ (تخت)\end{tabular}} & 1                       & \multicolumn{1}{c}{2}              & 5              & 10             & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}بهره\\ نسبی\end{tabular}} & \multirow{-2}{*}{\textit{\begin{tabular}[c]{@{}c@{}}پیشگویی \\ ابردسته\end{tabular}}} \\ \hline
+			Large DINO              & $38.1$                                                                        & \textit{$38.17$}          & \pmb{$38.48$} & \textit{$38.28$} & \textit{$38.17$} & {\color[HTML]{009901} $+1$}                                                 & $42.1$                                                                                    \\
+			Giant DINO              & 35                                                                          & \textit{$34.65$}          & \pmb{$35.23$} & \textit{$35.13$} & \textit{$35.1$}  & {\color[HTML]{009901} $+0.7$}                                               & $38.44$                                                                                   \\
+			CLIP                    & $17.09$                                                                       & \textit{\pmb{$24.52$}} & $23.04$          & \textit{21}    & \textit{$19.61$} & {\color[HTML]{009901} $+43.5$}                                              & $28.12$                                                                                   \\
+			$V2$ ConvNext             & $34.65$                                                                       & \textit{$36.48$}          & \pmb{$36.84$} & \textit{$36.37$} & \textit{$36.2$}  & {\color[HTML]{009901} $+6.3$}                                               & $41.8$                                                                                    \\ \hline
+		\end{tabular}%
+	}
+\end{table}
+
+
+
+
+\begin{table}[]
+	\caption{زیروشات پلنتایی}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{c|ccccccc}
+			\hline
+			& \multicolumn{7}{c}{Plantae iNat}                                                                                                                                                                                                                                                                                               \\ \cline{2-8} 
+			&                                                                             & \multicolumn{4}{c}{W ابردسته برنده}                                                       &                                                                           &                                                                                \\ \cline{3-6}
+			\multirow{-3}{*}{\diagbox[dir=NE,trim=rl,height=2.5\line]{تنظیمات}{~~~~~~~~بدنه}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پایه\\ (تخت)\end{tabular}} & 1                       & 2              & 5              & 10                      & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}بهره\\ نسبی\end{tabular}} & \multirow{-2}{*}{\begin{tabular}[c]{@{}c@{}}پیشگویی \\ ابردسته\end{tabular}} \\ \hline
+			Large DINO             & $67.42$                                                                       & \textit{$63.66$}          & $66.25$          & \textit{$67.39$} & \textit{\pmb{$67.52$}} & {\color[HTML]{009901} $+0.2$}                                               & $72.55$                                                                          \\
+			Giant DINO             & $64.37$                                                                       & \textit{$60.64$}          & $63.06$          & \textit{$64.13$} & \textit{\pmb{$64.4$}}  & {\color[HTML]{009901} $+0.1$}                                               & $69.26$                                                                          \\
+			CLIP                    & $22.82$                                                                       & \textit{\pmb{$39.97$}} & $35.75$          & \textit{$30.93$} & \textit{$28.06$}          & {\color[HTML]{009901} $+75.2$}                                              & $45.45$                                                                          \\
+			$V2$ ConvNext             & $55.2$                                                                        & \textit{$58.05$}          & \pmb{$58.49$} & \textit{$57.49$} & \textit{$56.4$}           & {\color[HTML]{009901} $+6$}                                                 & $65.57$                                                                          \\ \hline
+		\end{tabular}%
+	}
+\end{table}
